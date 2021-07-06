@@ -1,0 +1,48 @@
+
+"_LFME_sendButtonTitle" = "Done";
+"_LFME_defaultButtonTitle" = "默认";
+"_LFME_photoAlbumButtonTitle" = "相册";
+"_LFME_userGuidOkImage" = "okBtn_en";
+
+"_LFME_oKButtonTitle" = "OK";
+"_LFME_cancelButtonTitle" = "Cancel";
+"_LFME_processHintStr" = "Processing";
+
+"_LFME_alertViewCancelTitle" = "Determine";
+"_LFME_reachMaximumLimitTitle" = "Input limit reached";
+
+/* -------- LFAudioItem  -------*/
+"_LFME_defaultAudioItem_name" = "Default AudioTrack";
+"_LFME_MediaPicker_prompt" = "Please select the desired song";
+"_LFME_AudioTackTitle_prompt" = "Custom music";
+
+/* -------- LFRatioMenu  -------*/
+"_LFME_ratio_Original" = "Original";
+
+/* -------- LFFilterMenu  -------*/
+"_LFME_filter_Original" = "Original";
+"_LFME_filter_Curve" = "Curve";
+"_LFME_filter_Chrome" = "Chrome";
+"_LFME_filter_Fade" = "Fade";
+"_LFME_filter_Instant" = "Instant";
+"_LFME_filter_Mono" = "Mono";
+"_LFME_filter_Noir" = "Noir";
+"_LFME_filter_Process" = "Process";
+"_LFME_filter_Tonal" = "Tonal";
+"_LFME_filter_Transfer" = "Transfer";
+"_LFME_filter_Linear" = "Linear";
+"_LFME_filter_Invert" = "Invert";
+"_LFME_filter_Monochrome" = "Monochrome";
+
+/* -------- LFBrushMenu  -------*/
+"_LFME_brush_Paint" = "Brush";
+"_LFME_brush_Highlight" = "Two-color Pen";
+"_LFME_brush_Chalk" = "Chalk";
+"_LFME_brush_Fluorescent" = "Fluorescent";
+"_LFME_brush_Stamp" = "Stamp";
+"_LFME_brush_Eraser" = "Eraser";
+
+/* -------- UserGuide  -------*/
+"_LFME_UserGuide_ToolBar_Scroll" = "Scroll left 👈 to find more functions.";
+"_LFME_UserGuide_StickerView_MovingView_Pinch" = "Two fingers can also zoom and rotate.";
+"_LFME_UserGuide_StickerView_DisplayView_LongPress" = "Long press to preview the picture.";

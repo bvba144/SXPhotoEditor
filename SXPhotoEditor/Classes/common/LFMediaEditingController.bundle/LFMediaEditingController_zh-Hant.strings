@@ -1,0 +1,49 @@
+
+"_LFME_sendButtonTitle" = "完成";
+"_LFME_defaultButtonTitle" = "默認";
+"_LFME_photoAlbumButtonTitle" = "相冊";
+"_LFME_userGuidOkImage" = "okBtn";
+
+"_LFME_oKButtonTitle" = "完成";
+"_LFME_cancelButtonTitle" = "取消";
+"_LFME_processHintStr" = "正在處理...";
+
+"_LFME_alertViewCancelTitle" = "確定";
+
+"_LFME_reachMaximumLimitTitle" = "已達到輸入上限";
+
+/* -------- LFAudioItem  -------*/
+"_LFME_defaultAudioItem_name" = "Default AudioTrack";
+"_LFME_MediaPicker_prompt" = "請選擇需要的歌曲";
+"_LFME_AudioTackTitle_prompt" = "自定義音樂";
+
+/* -------- LFRatioMenu  -------*/
+"_LFME_ratio_Original" = "Original";
+
+/* -------- LFFilterMenu  -------*/
+"_LFME_filter_Original" = "Original";
+"_LFME_filter_Curve" = "Curve";
+"_LFME_filter_Chrome" = "Chrome";
+"_LFME_filter_Fade" = "Fade";
+"_LFME_filter_Instant" = "Instant";
+"_LFME_filter_Mono" = "Mono";
+"_LFME_filter_Noir" = "Noir";
+"_LFME_filter_Process" = "Process";
+"_LFME_filter_Tonal" = "Tonal";
+"_LFME_filter_Transfer" = "Transfer";
+"_LFME_filter_Linear" = "Linear";
+"_LFME_filter_Invert" = "Invert";
+"_LFME_filter_Monochrome" = "Monochrome";
+
+/* -------- LFBrushMenu  -------*/
+"_LFME_brush_Paint" = "畫筆";
+"_LFME_brush_Highlight" = "雙色筆";
+"_LFME_brush_Chalk" = "粉筆";
+"_LFME_brush_Fluorescent" = "熒光筆";
+"_LFME_brush_Stamp" = "圖章";
+"_LFME_brush_Eraser" = "橡皮擦";
+
+/* -------- UserGuide  -------*/
+"_LFME_UserGuide_ToolBar_Scroll" = "向左👈滾動會發現更多功能噢。";
+"_LFME_UserGuide_StickerView_MovingView_Pinch" = "雙指同樣可以實現縮放和旋轉。";
+"_LFME_UserGuide_StickerView_DisplayView_LongPress" = "長按可以預覽圖片。";
