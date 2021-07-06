@@ -264,7 +264,7 @@ typedef NS_ENUM(NSUInteger, LFPhotoEditOperationSubType) {
 @protocol LFPhotoEditingControllerDelegate <NSObject>
 
 - (void)lf_PhotoEditingControllerDidCancel:(LFPhotoEditingController *)photoEditingVC;
-- (void)lf_PhotoEditingController:(LFPhotoEditingController *)photoEditingVC didFinishPhotoEdit:(LFPhotoEdit *)photoEdit caption:(NSString *)photoEdit;
+- (void)lf_PhotoEditingController:(LFPhotoEditingController *)photoEditingVC didFinishPhotoEdit:(LFPhotoEdit *)photoEdit caption:(NSString *)caption;
 @optional
 - (void)lf_PhotoEditingController:(LFPhotoEditingController *)photoEditingVC didCancelPhotoEdit:(LFPhotoEdit *)photoEdit __deprecated_msg("delete deprecated. Use `lf_PhotoEditingControllerDidCancel:`");
 @end

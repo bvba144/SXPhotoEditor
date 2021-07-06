@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SXPhotoEditor"
-  spec.version      = "0.0.10"
+  spec.version      = "0.0.12"
   spec.summary      = "Basic image editor library"
 
   # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
   A tinny photo editor in Objective C, based on LFMediaEditingController
                    DESC
 
-  spec.homepage     = "https://github.com/banvanba/SXPhotoEditor"
+  spec.homepage     = "https://github.com/bvba144/SXPhotoEditor"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "Ba Ban" => "ba.ban@unseen.is" }
+  spec.author             = { "Ba Ban" => "bvba144@yahoo.com" }
   # Or just: spec.author    = "Ba Ban"
   # spec.authors            = { "Ba Ban" => "ba.ban@unseen.is" }
   # spec.social_media_url   = "https://twitter.com/Ba Ban"
@@ -80,7 +80,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/banvanba/SXPhotoEditor.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/bvba144/SXPhotoEditor.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

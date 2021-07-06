@@ -60,8 +60,6 @@
     if (photoEdit) {
         // photoEdit.editPreviewImage
     }
-    
-    NSLog(@"+++++ babv didFinishPhotoEdit: %@ - %@", photoEdit.editPreviewImage, caption);
 }
 
 
