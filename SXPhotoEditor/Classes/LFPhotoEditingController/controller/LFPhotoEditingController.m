@@ -153,8 +153,6 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     [self configCustomNaviBar];
     [self configBottomToolBar];
     [self configDefaultOperation];
-    
-    _defaultFrame = self.view.frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -209,27 +207,33 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)keyboardWillShow:(NSNotification *) notification {
+- (void)keyboardWillShow:(NSNotification *)notification {
     
-    if (0 <= self.view.frame.origin.y) {
-        _defaultFrame = self.view.frame;
-        NSDictionary *keyboardInfo = notification.userInfo;
-        CGRect keyboardFrameBeginRect = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if (_captionTextField.isEditing) {
+        UIView *bgView = _captionTextField.superview;
         
-        CGRect frame = self.view.frame;
-        frame.origin.y = frame.origin.y - keyboardFrameBeginRect.size.height;
+        if (bgView.frame.origin.y == _defaultFrame.origin.y) {
+            NSDictionary *keyboardInfo = notification.userInfo;
+            CGRect keyboardFrameBeginRect = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+            
+            CGRect frame = _defaultFrame;
+            frame.origin.y = self.view.frame.size.height - keyboardFrameBeginRect.size.height - frame.size.height;
 
-        [UIView animateWithDuration:1.0 animations:^{
-            self.view.frame = frame;
-        }];
+            [UIView animateWithDuration:0.4f animations:^{
+                bgView.frame = frame;
+            }];
+        }
     }
 }
 
-- (void)keyboardWillHide:(NSNotification *) notification {
+- (void)keyboardWillHide:(NSNotification *)notification {
+    UIView *bgView = _captionTextField.superview;
     
-    [UIView animateWithDuration:1.0 animations:^{
-        self.view.frame = self->_defaultFrame;
-    }];
+    if (bgView.frame.origin.y < _defaultFrame.origin.y) {
+        [UIView animateWithDuration:0.4f animations:^{
+            bgView.frame = self->_defaultFrame;
+        }];
+    }
 }
 
 #pragma mark - 创建视图
@@ -555,6 +559,7 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     [bgView addSubview:textField];
     
     _captionTextField = textField;
+    _defaultFrame = bgView.frame;
 }
 
 - (void)configDefaultOperation
@@ -622,7 +627,7 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
 - (void)singlePressedWithAnimated:(BOOL)animated
 {
     // If keyboard is being presented, dismiss it only
-    if (self.view.frame.origin.y < 0) {
+    if (_captionTextField.isEditing) {
         [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
         return;
     }
