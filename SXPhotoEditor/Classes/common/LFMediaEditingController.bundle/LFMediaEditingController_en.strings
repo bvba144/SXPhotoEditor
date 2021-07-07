@@ -45,3 +45,6 @@
 "_LFME_UserGuide_ToolBar_Scroll" = "Scroll left 👈 to find more functions.";
 "_LFME_UserGuide_StickerView_MovingView_Pinch" = "Two fingers can also zoom and rotate.";
 "_LFME_UserGuide_StickerView_DisplayView_LongPress" = "Long press to preview the picture.";
+
+/* -------- Add caption to image  -------*/
+"_LFME_addCaptionTitle" = "Add a caption";

@@ -45,6 +45,7 @@
     [lfPhotoEditVC setEditImage:image durations:nil];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lfPhotoEditVC];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
     
     [self presentViewController:nav animated:YES completion:nil];
 }

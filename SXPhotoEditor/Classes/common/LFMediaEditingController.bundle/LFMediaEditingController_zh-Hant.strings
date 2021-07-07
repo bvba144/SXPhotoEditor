@@ -47,3 +47,6 @@
 "_LFME_UserGuide_ToolBar_Scroll" = "向左👈滾動會發現更多功能噢。";
 "_LFME_UserGuide_StickerView_MovingView_Pinch" = "雙指同樣可以實現縮放和旋轉。";
 "_LFME_UserGuide_StickerView_DisplayView_LongPress" = "長按可以預覽圖片。";
+
+/* -------- Add caption to image  -------*/
+"_LFME_addCaptionTitle" = "添加標題";

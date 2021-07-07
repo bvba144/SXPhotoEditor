@@ -49,7 +49,7 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanRotateAttributeName = @"LF
 LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName = @"LFPhotoEditCropCanAspectRatioAttributeName";
 /************************ Attributes ************************/
 
-@interface LFPhotoEditingController () <LFEditToolbarDelegate, LFStickerBarDelegate, JRFilterBarDelegate, JRFilterBarDataSource, LFClipToolbarDelegate, LFEditToolbarDataSource, LFTextBarDelegate, LFPhotoEditDelegate, LFEditingViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface LFPhotoEditingController () <LFEditToolbarDelegate, LFStickerBarDelegate, JRFilterBarDelegate, JRFilterBarDataSource, LFClipToolbarDelegate, LFEditToolbarDataSource, LFTextBarDelegate, LFPhotoEditDelegate, LFEditingViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
 {
     /** 编辑模式 */
     LFEditingView *_EditingView;
@@ -507,32 +507,52 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
 }
 
 - (void)configCaptionInput {
-    CGFloat height = 30;
-    CGFloat padding = 16;
+    CGFloat tfHeight = 30;
+    CGFloat tfPadding = 4;
     
     UITextField *textField = [[UITextField alloc] init];
-    CGRect frame = CGRectMake(padding, _edit_toolBar.frame.origin.y - height, _edit_toolBar.frame.size.width - 2*padding, height);
-    textField.frame = frame;
+    textField.textColor = UIColor.whiteColor;
     textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    textField.delegate = self;
     
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, height)];
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, tfHeight)];
     textField.leftView = paddingView;
     textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.textAlignment = NSTextAlignmentCenter;
     
+    NSString *placeHolder = [NSBundle LFME_localizedStringForKey:@"_LFME_addCaptionTitle"];
     textField.textColor = UIColor.lightGrayColor;
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Add a caption" attributes:@{NSForegroundColorAttributeName: UIColor.darkGrayColor}];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: UIColor.lightGrayColor}];
     
     if (@available(iOS 13.0, *)) {
         textField.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;
     }
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    textField.layer.cornerRadius = 4.0f;
+    textField.layer.cornerRadius = tfHeight/2.0f;
     textField.layer.masksToBounds = YES;
     textField.layer.borderColor = [[UIColor darkGrayColor]CGColor];
-    textField.layer.borderWidth = 1.0f;
-    [textField setBackgroundColor:UIColor.clearColor];
-    [self.view addSubview:textField];
+    
+    CGFloat y = _edit_toolBar.frame.origin.y;
+    
+    if (@available( iOS 11.0, * )) {
+        // Notch iPhone
+        if ([[[UIApplication sharedApplication] keyWindow] safeAreaInsets].bottom > 0) {
+            y = _edit_toolBar.frame.origin.y - 34;
+        }
+    }
+    
+    CGFloat bgHeight = 55.0f;
+    UIView *bgView = [[UIView alloc] init];
+    bgView.frame = CGRectMake(0, y, _edit_toolBar.frame.size.width, bgHeight);
+    
+    CGFloat rgb = 34 / 255.0;
+    bgView.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.85];
+    [self.view insertSubview:bgView belowSubview:_edit_toolBar];
+    
+    CGRect tfFrame = CGRectMake(tfPadding, (bgHeight - tfHeight)/2, _edit_toolBar.frame.size.width - 2*tfPadding, tfHeight);
+    textField.frame = tfFrame;
+    [bgView addSubview:textField];
     
     _captionTextField = textField;
 }
@@ -1219,13 +1239,13 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
             CGFloat alpha = self->_isHideNaviBar ? 0.f : 1.f;
             self->_edit_naviBar.alpha = alpha;
             self->_edit_toolBar.alpha = alpha;
-            self->_captionTextField.alpha = alpha;
+            self->_captionTextField.superview.alpha = alpha;
         }];
     } else {
         CGFloat alpha = _isHideNaviBar ? 0.f : 1.f;
         _edit_naviBar.alpha = alpha;
         _edit_toolBar.alpha = alpha;
-        _captionTextField.alpha = alpha;
+        _captionTextField.superview.alpha = alpha;
     }
 }
 
@@ -1473,6 +1493,23 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
         }
     }
     return NO;
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    if (textField == _captionTextField) {
+        textField.layer.borderWidth = 1.0f;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    if (textField == _captionTextField) {
+        textField.layer.borderWidth = 0.0f;
+    }
 }
 
 @end
