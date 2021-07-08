@@ -167,7 +167,6 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -176,7 +175,6 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     
     // unregister for keyboard notifications while not visible.
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillLayoutSubviews
@@ -215,24 +213,17 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
         if (bgView.frame.origin.y == _defaultFrame.origin.y) {
             NSDictionary *keyboardInfo = notification.userInfo;
             CGRect keyboardFrameBeginRect = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+            double duration = [keyboardInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+            UInt64 curve = [keyboardInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntValue];
             
             CGRect frame = _defaultFrame;
             frame.origin.y = self.view.frame.size.height - keyboardFrameBeginRect.size.height - frame.size.height;
-
-            [UIView animateWithDuration:0.4f animations:^{
+            
+            [UIView animateWithDuration:duration delay:0.05 options:curve animations:^{
                 bgView.frame = frame;
+            } completion:^(BOOL finished) {
             }];
         }
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    UIView *bgView = _captionTextField.superview;
-    
-    if (bgView.frame.origin.y < _defaultFrame.origin.y) {
-        [UIView animateWithDuration:0.4f animations:^{
-            bgView.frame = self->_defaultFrame;
-        }];
     }
 }
 
@@ -628,7 +619,8 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
 {
     // If keyboard is being presented, dismiss it only
     if (_captionTextField.isEditing) {
-        [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+        //[[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+        [self.view endEditing:YES];
         return;
     }
     
@@ -1514,6 +1506,14 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     
     if (textField == _captionTextField) {
         textField.layer.borderWidth = 0.0f;
+        
+        UIView *bgView = _captionTextField.superview;
+        
+        if (bgView.frame.origin.y < _defaultFrame.origin.y) {
+            [UIView animateWithDuration:0.1f animations:^{
+                bgView.frame = self->_defaultFrame;
+            }];
+        }
     }
 }
 
