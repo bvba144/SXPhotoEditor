@@ -43,6 +43,7 @@
     LFPhotoEditingController *lfPhotoEditVC = [[LFPhotoEditingController alloc] init];
     lfPhotoEditVC.delegate = self;
     [lfPhotoEditVC setEditImage:image durations:nil];
+    [lfPhotoEditVC setCaptionTextFieldHidden:YES];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lfPhotoEditVC];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;

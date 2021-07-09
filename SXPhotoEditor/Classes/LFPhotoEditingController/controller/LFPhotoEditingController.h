@@ -228,6 +228,11 @@ typedef NS_ENUM(NSUInteger, LFPhotoEditOperationSubType) {
 - (void)setPhotoEdit:(LFPhotoEdit *)photoEdit;
 
 /**
+ Set the caption input text field hidden
+ */
+- (void)setCaptionTextFieldHidden:(BOOL)flag;
+
+/**
  设置操作类型
  The type of operation.
  default is LFPhotoEditOperationType_All

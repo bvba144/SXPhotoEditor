@@ -76,6 +76,9 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     
     /** Caption text field */
     UITextField *_captionTextField;
+    
+    /** Caption input text field hidden */
+    BOOL _captionTextFieldHidden;
 }
 
 /** 隐藏控件 */
@@ -131,6 +134,14 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
 {
     [self setEditImage:photoEdit.editImage durations:photoEdit.durations];
     _editData = photoEdit.editData;
+}
+
+- (void)setCaptionTextFieldHidden:(BOOL)flag {
+    _captionTextFieldHidden = flag;
+    
+    if (_captionTextField != nil && _captionTextField.superview != nil) {
+        [_captionTextField.superview setHidden:flag];
+    }
 }
 
 - (void)setDefaultOperationType:(LFPhotoEditOperationType)defaultOperationType
@@ -548,9 +559,11 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropCanAspectRatioAttributeName =
     CGRect tfFrame = CGRectMake(tfPadding, (bgHeight - tfHeight)/2, _edit_toolBar.frame.size.width - 2*tfPadding, tfHeight);
     textField.frame = tfFrame;
     [bgView addSubview:textField];
+    [bgView setHidden:_captionTextFieldHidden];
     
     _captionTextField = textField;
     _defaultFrame = bgView.frame;
+    
 }
 
 - (void)configDefaultOperation
